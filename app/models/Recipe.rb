@@ -16,11 +16,10 @@ class Recipe
   end
 
   def self.most_popular
-
-  end
-
-  def users
-
+    all_recipes = RecipeCard.all.collect do |recipe_card, values|
+      recipe_card.recipe
+    end
+    all_recipes.mode
   end
 
   def allergens

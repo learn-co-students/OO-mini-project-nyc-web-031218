@@ -12,13 +12,12 @@ class User
   end
 
   def recipe
-    @recipe
+    @recipes
   end
 
   def add_recipe_card(recipe, date, rating)
-    new_recipe_card = RecipeCard.new(self, recipe, date, rating)
-    RecipeCard.all << new_recipe_card
-    @recipe << recipe
+    RecipeCard.new(self, recipe, date, rating)
+    @recipes << recipe
   end
 
   def declare_allergen

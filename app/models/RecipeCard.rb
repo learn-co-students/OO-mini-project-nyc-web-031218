@@ -6,7 +6,7 @@ class RecipeCard
 
   attr_accessor :user, :recipe, :date, :rating
 
-  def initialize(user, recipe, date, rating)
+  def initialize(:user, :recipe, :date, :rating)
     @@all << self
     @user = user
     @recipe = recipe
