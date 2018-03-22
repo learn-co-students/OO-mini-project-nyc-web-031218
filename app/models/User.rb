@@ -1,12 +1,12 @@
 
   class User
 
-    attr_reader :name, :recipe, :recipecard
+    attr_reader :name, :recipes
     @@all = []
 
     def initialize(name)
       @name = name
-      @recipecard = []
+      @recipes =[]
       @@all << self
       @count = 0
     end
@@ -23,10 +23,11 @@
       rc = Recipecard.new(date, rating)
       rc.user = self
       rc.recipe = recipe
-      @recipecard << rc
+      @recipes << recipe
       recipe.users << self
       @count += 1
     end
+
 
     # def recipes
     #   recipecard collect do |recipecard|

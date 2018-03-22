@@ -1,11 +1,12 @@
  class Recipe
 
-   attr_accessor :name, :recipecard, :users
+   attr_accessor :name, :recipecard, :users, :ingredient
    @@all = []
 
    def initialize(name)
      @name = name
      @users = []
+     @ingredients = []
      @@all << self
    end
 
@@ -24,6 +25,8 @@
      end
      max_recipe
    end
+
+
 
 
  end

@@ -1,7 +1,7 @@
 
 class Ingredient
 
-  attr_accessor :name
+  attr_accessor :name, :recipe
   @@all = []
 
   def initialize(name)
@@ -14,5 +14,8 @@ class Ingredient
   end
 
 
+  def self.most_common_allergen
+     self.all.allergen.mode
+      end
 
 end
