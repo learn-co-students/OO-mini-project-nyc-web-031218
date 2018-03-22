@@ -22,8 +22,6 @@ class Recipe
     end
 
     card_hash.max_by {|k,v| v}
-    # binding.pry
-    # popular.map {|card| card.rating}
   end
 
   def users
@@ -40,7 +38,10 @@ class Recipe
   end
 
   def allergens
-
+    current_ingredients = self.ingredients
+    Allergen.all.select do |allergy|
+      current_ingredients.include?(allergy.ingredient)
+    end.map {|e| e.ingredient} 
   end
 
   def add_ingredients(ingredients)
