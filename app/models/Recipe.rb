@@ -60,7 +60,6 @@
         end
       end
       allergen_arr
-      binding.pry
     end
 
    def recipe_cards
@@ -71,10 +70,9 @@
 
    #return this user's recipes
    def users
-    x = recipe_cards.map do |rc|
+    recipe_cards.map do |rc|
        rc.user
      end
-     binding.pry
    end
 
 
