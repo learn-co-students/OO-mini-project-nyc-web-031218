@@ -16,10 +16,9 @@ class Recipe
     arr.each do |recipe|
       hash[recipe] +=1
     end
-    ans = hash.max_by do |name, count|
-      count
+    arr.max_by do |recipe|
+      hash[recipe]
     end
-    ans[0]
   end
 
   def add_ingredients(arr)
