@@ -5,6 +5,7 @@ class User
   def initialize()
     @@all << self
     @recipes = []
+    @allergens = []
   end
 
   def self.all
@@ -20,12 +21,13 @@ class User
     @recipes << recipe
   end
 
-  def declare_allergen
-
+  def declare_allergen(ingredient)
+    Allergen.new(self, ingredient)
+    @allergens << ingredient
   end
 
   def allergens
-
+    @allergens
   end
 
   def top_three_recipes
