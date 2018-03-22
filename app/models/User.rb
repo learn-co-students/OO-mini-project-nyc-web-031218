@@ -1,7 +1,10 @@
 class User
   @@all = []
 
-  def initialize
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
     @@all << self
   end
 

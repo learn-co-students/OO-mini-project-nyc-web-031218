@@ -1,11 +1,11 @@
 class Recipe
   @@all = []
 
-  attr_accessor :id
+  attr_accessor :name
 
-  def initialize(id)
+  def initialize(name)
     @@all << self
-    @id = id
+    @name = name
   end
 
   def self.all
@@ -23,8 +23,8 @@ class Recipe
   end
 
   def users
-    recipe_card.map do |r|
-      r.users
+    recipe_cards.map do |r|
+      r.user
     end
   end
 
