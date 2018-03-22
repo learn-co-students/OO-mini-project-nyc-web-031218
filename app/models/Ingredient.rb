@@ -19,10 +19,9 @@ class Ingredient
     ing.each do |ingredient|
       hash[ingredient] += 1
     end
-    ans = hash.max_by do |name, count|
-      count
+    ing.max_by do |allergen|
+      hash[allergen]
     end
-    ans[0]
   end
 
 end
