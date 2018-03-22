@@ -12,25 +12,53 @@
      @@all
    end
 
-   def self.most_popular
-
-     # self.all.sort_by do |recipe|
-     #   recipe.users.count
-     # end
-     #
-
-
-     max_recipe = ""
-     max_recipe_count = 0
-     self.all.each do |recipe|
-       if recipe.users.count > max_recipe_count
-         max_recipe_count = recipe.users.count
-         max_recipe = recipe
-       end
+   #return this recipe's recipe cards
+   def recipe_cards
+     Recipecard.all.select do |rc|
+       rc.recipe == self
      end
-     max_recipe
-
    end
+
+   def self.most_popular
+     Recipe.all.sort_by do |recipe|
+       recipe.recipe_cards.count
+     end.reverse.first
+   end
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+   #most_popular returns specific name
+   # def self.most_popular
+   #
+   #   hash = {}
+   #   Recipe.all.each do |recipe|
+   #     hash[recipe.name] = 0
+   #   end
+   #
+   #   Recipecard.all.each do |rc|
+   #     hash[rc.recipe.name] += 1
+   #   end
+   #
+   #   x = hash.max_by do |key, value|
+   #     value
+   #   end
+   #
+   #   x[0]
+   #
+   #   binding.pry
+   #
+   # end
 
 
 

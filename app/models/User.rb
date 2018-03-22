@@ -7,7 +7,7 @@
     def initialize(name)
       @name = name
       @@all << self
-      @count = 0
+      # @count = 0
       @last_added_recipe = nil
     end
 
@@ -15,16 +15,14 @@
       @@all
     end
 
-    def self.count
-      @@count
-    end
+    # def self.count
+    #   @@count
+    # end
 
     def add_recipe_card(recipe, rating, date)
-      rc = Recipecard.new(rating, date)
-      rc.user = self
-      rc.recipe = recipe
-      # recipe.users << self
-      @count += 1
+      Recipecard.new(rating, date, self, recipe)
+
+      # @count += 1
       @last_added_recipe = recipe
 
     end
@@ -40,6 +38,17 @@
     def recipes
       recipe_cards.map do |rc|
         rc.recipe
+      end
+    end
+
+    def declare_allergen(ingredient)
+      Allergen.new(self, ingredient)
+
+    end
+
+    def allergens
+      Allergen.all.select do |allergen|
+        allergen.user == self
       end
     end
 

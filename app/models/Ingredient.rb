@@ -13,9 +13,21 @@ class Ingredient
     @@all
   end
 
+  #return this ingredient's allergens
+  def allergens
+    Allergen.all.select do |allergen|
+      allergen.ingredient == self
+    end
+  end
+
 
   def self.most_common_allergen
-     self.all.allergen.mode
-      end
+    Ingredient.all.sort_by do |ingredient|
+      ingredient.allergens.count
+    end.reverse.first
+
+    # binding.pry
+  end
+
 
 end
