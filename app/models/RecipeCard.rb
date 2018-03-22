@@ -1,12 +1,10 @@
-require 'pry'
 
  class Recipecard
 
    attr_accessor :recipe, :user, :rating, :date
    @@all = []
 
-   def initialize (name, rating, date)
-     @name = name
+   def initialize  (rating, date)
      @rating = rating
      @date = date
      @@all << self
@@ -18,5 +16,3 @@ require 'pry'
 
 
 end
-
-Pry.start

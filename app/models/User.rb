@@ -1,3 +1,4 @@
+
   class User
 
     attr_reader :name, :recipe, :recipecard
@@ -19,15 +20,18 @@
     end
 
     def add_recipe_card(recipe, date, rating)
-      rc = Recipecard.new(recipe, date, rating)
+      rc = Recipecard.new(date, rating)
+      rc.user = self
+      rc.recipe = recipe
       @recipecard << rc
+      recipe.users << self
       @count += 1
     end
 
-    def recipes
-      @recipecard collect do |recipecard|
-        recipecard.recipe
-      end
-    end
+    # def recipes
+    #   recipecard collect do |recipecard|
+    #     recipecard.recipe
+    #   end
+    # end
 
   end
