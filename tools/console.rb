@@ -20,6 +20,8 @@ rani.add_recipe_card(pizza, 2, "Dec")
 mark.add_recipe_card(burger, 5, "June")
 mark.add_recipe_card(salad, 7, "Nov")
 
-harim_recipe_cards = harim.top_three_recipes
+harim.recipes
+harim.top_three_recipes
+harim.most_recent_recipe
 
 binding.pry

@@ -1,14 +1,14 @@
 
   class User
 
-    attr_reader :name, :recipes
+    attr_reader :name
     @@all = []
 
     def initialize(name)
       @name = name
-      @recipes =[]
       @@all << self
       @count = 0
+      @last_added_recipe = nil
     end
 
     def self.all
@@ -23,37 +23,44 @@
       rc = Recipecard.new(rating, date)
       rc.user = self
       rc.recipe = recipe
-      @recipes << recipe
-      recipe.users << self
+      # recipe.users << self
       @count += 1
+      @last_added_recipe = recipe
+
+    end
+
+    #return this user's recipe cards
+    def recipe_cards
+      Recipecard.all.select do |rc|
+        rc.user == self
+      end
+    end
+
+    #return this user's recipes
+    def recipes
+      recipe_cards.map do |rc|
+        rc.recipe
+      end
     end
 
 
     def top_three_recipes
-      user_recipe_cards = []
+      #this user's recipe cards in an array
+      top_three_rc = recipe_cards.sort_by do |rc|
+        rc.rating
+      end.reverse.slice(0,3)
 
-      Recipecard.all.each do |rc|
-        if rc.user == self
-          user_recipe_cards << rc
-        end
+      #extract recipe objects
+      top_three_rc.map do |rc|
+        rc.recipe
       end
 
-      #user_recipe_cards is an array of all recipe cards
-      #for this user
-      user_recipe_cards
+    end
 
-      user_recipe_cards.each do |rc|
 
-      end
 
-      #user_recipecards => [recipe cards that belong to user]
-
-      #[Pizza, Pasta, Salad]
-      # self.recipes.each do |recipe|
-      #
-      #
-      # end
-
+    def most_recent_recipe
+      @last_added_recipe
 
     end
 
