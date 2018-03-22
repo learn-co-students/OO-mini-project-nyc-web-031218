@@ -19,13 +19,14 @@ class Ingredient
     ing.each do |ingredient|
       hash[ingredient] += 1
     end
-    i = hash.values[0]
-    j = 0
-    hash.each_with_index do |(name, count), index|
-      if count > i
-        j = index
-        i = count
-      end
+    # i = hash.values[0]
+    # j = 0
+    hash.max_by do |name, count|
+      count
+      # if count > i
+      #   j = index
+      #   i = count
+      # end
     end
     hash.keys[j]
   end
