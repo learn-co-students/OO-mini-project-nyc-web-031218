@@ -24,8 +24,8 @@ class Recipe
   end
 
   def users
-    recipe_card.map do |r|
-      r.users
+    recipe_cards.map do |r|
+      r.user
     end
   end
 

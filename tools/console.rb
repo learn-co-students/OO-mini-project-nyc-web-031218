@@ -15,7 +15,6 @@ i3 = Ingredient.new("water")
 i4 = Ingredient.new("salt")
 i5 = Ingredient.new("pepper")
 
-
 r2.add_ingredients([i1,i2,i3])
 recipe.add_ingredients([i1,i5])
 r3.add_ingredients([i4,i5])
