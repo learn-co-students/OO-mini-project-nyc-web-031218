@@ -15,7 +15,6 @@ class Recipe
   def self.most_popular
     counter_hash = {}
     RecipeCard.all.each do |recipe_card|
-      # binding.pry
       if counter_hash[recipe_card.recipe]
         counter_hash[recipe_card.recipe] += 1
       else
@@ -33,6 +32,26 @@ class Recipe
       recipe_card.user
     end
   end
+
+  def add_ingredients(ingredient_array)
+    ingredient_array.each do |ingredient|
+      RecipeIngredient.new(ingredient, self)
+    end
+  end
+
+  def ingredients
+    RecipeIngredient.all.select do |ri|
+      ri.recipe == self
+    end
+  end
+
+  def allergens
+
+    self.ingredients.select do |ingredient|
+      ingredient.is_allergen?
+    end
+  end
+
 
 end
 

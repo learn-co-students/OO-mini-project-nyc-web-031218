@@ -15,9 +15,8 @@ class User
     @@all
   end
 
-  def add_recipe_card(recipe, date, rating)
-    new_recipe_card = RecipeCard.new(self, recipe, date, rating)
-    # @recipe_cards << new_recipe_card
+  def add_recipe_card(recipe, date = Time.now, rating)
+    RecipeCard.new(self, recipe, date, rating)
   end
 
   def find_user_recipe_cards
@@ -41,6 +40,29 @@ class User
     top_three = ratings.max_by(3) {|k,v| v}
     top_three.collect { |h| h[0] }
 
+  end
+
+  def most_recent_recipe
+    sorted_by_date = self.find_user_recipe_cards.sort_by do |recipe_card|
+      recipe_card.date
+    end
+    sorted_by_date[-1]
+  end
+
+  def declare_allergen(ingredient)
+    Allergen.new(ingredient, self)
+  end
+
+  def find_users_allergens
+    Allergen.all.select do |allergen|
+      allergen.user == self
+    end
+  end
+
+  def allergens
+    self.find_user_allergens.map do |allergen|
+      allergen.ingredient
+    end
   end
 
 end
