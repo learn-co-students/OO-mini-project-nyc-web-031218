@@ -4,21 +4,27 @@ class Recipe
 
   @@all = []
 
-  attr_accessor :ingredients, :users, :count
+  attr_accessor :ingredients, :users, :count, :name
 
   def self.all
     @@all
   end
 
-  def initialize()
+  def initialize(name)
     @@all << self
+    @name = name
     @ingredients = []
     @count = 0
   end
 
   def users
+    users_for_recipe = []
     get_recipes = RecipeCard.all.select { |rc| rc.recipe = self }
-    get_recipes.map {|recipe| recipe.user}
+    get_recipes.each {|recipe|
+      if !users_for_recipe.include?(recipe.user)
+        users_for_recipe << recipe.user
+      end}
+    users_for_recipe
   end
 
   def self.most_popular
@@ -34,19 +40,29 @@ class Recipe
   end
 
   def allergens
+   allergen_i = []
     RecipeCard.all.each do |rc|
-      rc.self.ingredients.select do |i|
-        i.is_allergen == true
+      if rc.recipe == self
+        rc.recipe.ingredients.each do |i|
+          if i.is_allergen == true
+            allergen_i << i
+          end
+        end
       end
     end
+    allergen_i
   end
 
   def add_ingredients(ingredients)
     ingredients.each do |ingredient|
       @ingredients << ingredient
+      create_ri(ingredient)
     end
   end
 
+  def create_ri(ingredient)
+    RecipeIngredient.new(self, ingredient)
+  end
 
 end
 

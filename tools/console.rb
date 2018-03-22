@@ -3,19 +3,19 @@ require_relative '../config/environment.rb'
 christian = User.new("Christian")
 jon = User.new("Jon")
 
-tomato = Ingredient.new
-pasta = Ingredient.new
-cheese = Ingredient.new
-nuts = Ingredient.new
-meat = Ingredient.new
-bread = Ingredient.new
-lettuce = Ingredient.new
+tomato = Ingredient.new("tomato")
+pasta = Ingredient.new("pasta")
+cheese = Ingredient.new("cheese")
+nuts = Ingredient.new("nuts")
+meat = Ingredient.new("meat")
+bread = Ingredient.new("bread")
+lettuce = Ingredient.new("lettuce")
 
-salad = Recipe.new
-pizza = Recipe.new
-sp = Recipe.new
-pbs = Recipe.new
-pesto = Recipe.new
+salad = Recipe.new("salad")
+pizza = Recipe.new("pizza")
+sp = Recipe.new("spaghetti")
+pbs = Recipe.new("peanut-butter sandwich")
+pesto = Recipe.new("pesto")
 
 salad.add_ingredients([lettuce, tomato, cheese])
 pizza.add_ingredients([bread, tomato, cheese])
