@@ -16,6 +16,11 @@ class Recipe
     @count = 0
   end
 
+  def users
+    get_recipes = RecipeCard.all.select { |rc| rc.recipe = self }
+    get_recipes.map {|recipe| recipe.user}
+  end
+
   def self.most_popular
     max = 0
     most_popular_recipe = nil
@@ -29,7 +34,11 @@ class Recipe
   end
 
   def allergens
-
+    RecipeCard.all.each do |rc|
+      rc.self.ingredients.select do |i|
+        i.is_allergen == true
+      end
+    end
   end
 
   def add_ingredients(ingredients)

@@ -2,7 +2,7 @@ class Ingredient
 
   @@all = []
 
-  attr_accessor :user_allergens
+  attr_accessor :user_allergens, :is_allergen
 
   def self.all
     @@all
@@ -10,6 +10,7 @@ class Ingredient
 
   def initialize
     @@all << self
+    @is_allergen = false
   end
 
   def self.most_common_allergen
