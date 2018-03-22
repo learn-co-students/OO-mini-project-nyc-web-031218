@@ -15,8 +15,10 @@ onions = Ingredient.new("Onions")
 joe.declare_allergen(peanuts)
 eric.declare_allergen(peanuts)
 dick.declare_allergen(rice)
-dick.declare_allergen(sauce)
+joe.declare_allergen(sauce)
 eric.declare_allergen(sauce)
+dick.declare_allergen(sauce)
+
 
 
 peanutbutter = Recipe.new("Peanut Butter")

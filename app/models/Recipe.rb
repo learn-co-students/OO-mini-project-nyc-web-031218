@@ -14,7 +14,7 @@ class Recipe
     end
     hash = Hash.new(0)
     arr.each do |recipe|
-      hash[recipe.name] +=1
+      hash[recipe] +=1
     end
     i = hash.values[0]
     j = 0
@@ -24,10 +24,7 @@ class Recipe
         i = count
       end
     end
-    card = RecipeCard.all.find do |rc|
-      rc.recipe.name == hash.keys[j]
-    end
-    card.recipe
+    hash.keys[j]
   end
 
   def add_ingredients(arr)

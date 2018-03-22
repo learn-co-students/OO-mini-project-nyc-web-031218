@@ -17,7 +17,7 @@ class Ingredient
     end
     hash = Hash.new(0)
     ing.each do |ingredient|
-      hash[ingredient.name] += 1
+      hash[ingredient] += 1
     end
     i = hash.values[0]
     j = 0
@@ -27,10 +27,7 @@ class Ingredient
         i = count
       end
     end
-    allr = Allergen.all.find do |allergen|
-      allergen.ingredient.name == hash.keys[j]
-    end
-    allr.ingredient
+    hash.keys[j]
   end
 
 end

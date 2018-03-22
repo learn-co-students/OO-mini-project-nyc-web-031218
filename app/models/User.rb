@@ -1,6 +1,5 @@
 class User
   attr_accessor :name, :recipe
-
   @@all = []
 
   def initialize(name)
@@ -58,15 +57,12 @@ class User
   end
 
   def safe_recipes
-    unsafe = allergens.map do |allergies|
-      allergies.name
-    end
+    unsafe = allergens
 
     self.recipes.select do |recipe|
       bool = true
-
       recipe.ingredients.each do |ingredient|
-        if unsafe.include?(ingredient.name)
+        if unsafe.include?(ingredient)
           bool = false
         end
       end
