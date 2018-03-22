@@ -34,6 +34,9 @@ rani.declare_allergen(artichoke)
 rani.declare_allergen(peanut)
 mark.declare_allergen(tomato)
 
+pizza.add_ingredients([tomato,gruyere,artichoke])
+pasta.add_ingredients([tomato,peanut])
+
 
 
 

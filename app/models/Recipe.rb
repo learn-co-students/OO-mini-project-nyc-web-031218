@@ -26,7 +26,24 @@
    end
 
 
-  
+   def add_rc_ingredient(ingredient)
+     RecipeIngredient.new(self, ingredient)
+   end
+
+   def add_ingredients(ingredients)
+     ingredients.each do |ingredient|
+        add_rc_ingredient(ingredient)
+     end
+     binding.pry
+   end
+
+   def recipe_ingredients
+     RecipeIngredient.all.select do |ri|
+       ri.recipe == self
+       ri.ingredient
+     end
+     binding.pry
+   end
 
 
 
