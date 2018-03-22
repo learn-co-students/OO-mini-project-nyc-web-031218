@@ -52,7 +52,7 @@
    def allergens
      allergen_arr = []
      allergen_ingredients = Allergen.all.map do |allergen|
-       allergen.ingredient
+       allergen.  ingredient
      end
      ingredients.each do |ingredient|
        if allergen_ingredients.include?(ingredient)
