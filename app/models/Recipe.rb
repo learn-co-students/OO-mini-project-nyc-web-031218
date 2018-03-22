@@ -4,7 +4,7 @@ class Recipe
 
   @@all = []
 
-  attr_accessor :ingredients, :users
+  attr_accessor :ingredients, :users, :count
 
   def self.all
     @@all
@@ -13,13 +13,19 @@ class Recipe
   def initialize()
     @@all << self
     @ingredients = []
+    @count = 0
   end
 
   def self.most_popular
-    all_recipes = RecipeCard.all.collect do |recipe_card, values|
-      recipe_card.recipe
+    max = 0
+    most_popular_recipe = nil
+    RecipeCard.all.each do |recipe_card|
+      if recipe_card.recipe.count > max
+        max = recipe_card.recipe.count
+        most_popular_recipe = recipe_card.recipe
+      end
     end
-    all_recipes.mode
+    most_popular_recipe
   end
 
   def allergens

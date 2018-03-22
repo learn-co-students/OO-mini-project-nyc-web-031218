@@ -2,7 +2,7 @@ class User
 
   @@all = []
 
-  def initialize
+  def initialize()
     @@all << self
     @recipes = []
   end
