@@ -41,13 +41,13 @@ tomato_sauce = Ingredient.new("tomato_sauce")
 puts "    created new ingredients: strawberry, nuts, milk, wheat, tomato_sauce".colorize(:green)
 
 
-allergen1 = dick.declare_allergen("milk")
-allergen2 = tom.declare_allergen("nuts")
-allergen3 = dick.declare_allergen("wheat")
-allergen4 = tom.declare_allergen("tomato_sauce")
-allergen5 = dick.declare_allergen("strawberry")
-allergen6 = tom.declare_allergen("milk")
-allergen7 = harry.declare_allergen("milk")
+allergen1 = dick.declare_allergen(milk)
+allergen2 = tom.declare_allergen(nuts)
+allergen3 = dick.declare_allergen(wheat)
+allergen4 = tom.declare_allergen(tomato_sauce)
+allergen5 = dick.declare_allergen(strawberry)
+allergen6 = tom.declare_allergen(milk)
+allergen7 = harry.declare_allergen(milk)
 puts "    User#declare_allergen: added allergen(1..7)".colorize(:green)
 
 ri1 = pizza.add_ingredients([milk, wheat, tomato_sauce])
@@ -158,6 +158,7 @@ end
 puts "## RECIPE <-> RECIPE_INGREDIENT <-> INGREDIENT".colorize(:magenta)
 
 puts "   # Recipe Test".colorize(:yellow)
+
 if pizza.ingredients == [milk, wheat, tomato_sauce]
   puts "    recipe.ingredients returns recipe's ingredients".colorize(:green)
 else
@@ -165,25 +166,19 @@ else
 end
 
 puts "   # Recipe Ingredient Test".colorize(:yellow)
-if ri1[0].ingredient == [milk]
+if ri1[0].ingredient == milk
   puts "    recipeingredients.ingredient returns ri ingredient".colorize(:green)
 else
   puts "    FAILED TEST".colorize(:red)
 end
 
-if ri1[0].recipe == [pizza]
+if ri1[0].recipe == pizza
   puts "    recipeingredients.recipe returns ri recipe".colorize(:green)
 else
   puts "    FAILED TEST".colorize(:red)
 end
 
-puts "   # Ingredient Test".colorize(:yellow)
-if Ingredient.most_common_allergen == [tomato_sauce]
-  puts "    Ingredient.most_common_allergen returns  most common allergen".colorize(:green)
-else
-  puts "    FAILED TEST".colorize(:red)
-end
-
+# puts "   # Ingredient Test".colorize(:yellow)
 
 puts "## USER <-> ALLERGEN <-> INGREDIENT".colorize(:magenta)
 
@@ -211,4 +206,4 @@ else
   puts "    FAILED TEST".colorize(:red)
 end
 
-binding.pry
+# binding.pry

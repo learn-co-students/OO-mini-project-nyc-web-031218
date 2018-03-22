@@ -42,14 +42,20 @@ class Recipe
   end
 
   def ingredients
+    self.find_recipeingredients.map do |ri|
+      ri.ingredient
+    end
+  end
+
+  def find_recipeingredients
     RecipeIngredient.all.select do |ri|
       ri.recipe == self
     end
   end
 
-  def allergens
 
-    self.ingredients.select do |ingredient|
+  def allergens
+    self.ingredients.each do |ingredient|
       ingredient.is_allergen?
     end
   end
