@@ -25,7 +25,6 @@ class Ingredient
   end
 
   def is_allergen?
-    Allergen.all.include? do |allergen|
-      allergen == self
-    end
+    Allergen.all.include?(self)
   end
+end

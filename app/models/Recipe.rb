@@ -34,9 +34,11 @@ class Recipe
   end
 
   def add_ingredients(ingredient_array)
+    ingredients = []
     ingredient_array.each do |ingredient|
-      RecipeIngredient.new(ingredient, self)
+     ingredients << RecipeIngredient.new(ingredient, self)
     end
+    ingredients
   end
 
   def ingredients

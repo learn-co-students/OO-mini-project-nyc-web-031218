@@ -38,8 +38,24 @@ nuts = Ingredient.new("nuts")
 milk = Ingredient.new("milk")
 wheat = Ingredient.new("wheat")
 tomato_sauce = Ingredient.new("tomato_sauce")
-
 puts "    created new ingredients: strawberry, nuts, milk, wheat, tomato_sauce".colorize(:green)
+
+
+allergen1 = dick.declare_allergen("milk")
+allergen2 = tom.declare_allergen("nuts")
+allergen3 = dick.declare_allergen("wheat")
+allergen4 = tom.declare_allergen("tomato_sauce")
+allergen5 = dick.declare_allergen("strawberry")
+allergen6 = tom.declare_allergen("milk")
+allergen7 = harry.declare_allergen("milk")
+puts "    User#declare_allergen: added allergen(1..7)".colorize(:green)
+
+ri1 = pizza.add_ingredients([milk, wheat, tomato_sauce])
+ri2 = pasta.add_ingredients([wheat, tomato_sauce])
+ri3 = meatloaf.add_ingredients([tomato_sauce])
+ri4 = chicken.add_ingredients([nuts])
+puts "    Recipe#add_ingredients: added ri(1..4)".colorize(:green)
+
 
 puts "  # CLASS.all (x6)".colorize(:yellow)
 
@@ -61,14 +77,26 @@ else
   puts "    FAILED TEST".colorize(:red)
 end
 
-# if Ingredient.all ==
-# puts "Ing:redient.all returns array of all ing:redients".colorize(:green)
-#
-# if RecipeIngredient.all ==
-# puts "RecipeIng:redient.all returns array of all recipeing:redients".colorize(:green)
-#
-# if Allergen.all ==
-# puts "Allergen.all returns array of all allergens".colorize(:green)
+if Ingredient.all == [strawberry, nuts, milk, wheat, tomato_sauce]
+puts "    Ingredient.all returns array of all ingredients".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+
+if Allergen.all == [allergen1, allergen2, allergen3, allergen4, allergen5, allergen6, allergen7]
+puts "    Allergen.all returns array of all user allergens".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+
+if RecipeIngredient.all == [ri1, ri2, ri3, ri4].flatten
+puts "    RecipeIngredient.all returns array of all recipe ingredients".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
 
 puts "## RECIPE <-> RECIPE_CARD <-> USER".colorize(:magenta)
 
@@ -86,11 +114,6 @@ if tom.most_recent_recipe == card7
 else
   puts "    FAILED TEST".colorize(:red)
 end
-# if harry.most_recent_recipe ==
-#   puts "user #most_recent_recipe returns user's most recently added recipe"
-# else
-#   puts "FAILED TEST".colorize(:red)
-# end
 
 puts "  Recipe Tests".colorize(:yellow)
 #
@@ -132,10 +155,60 @@ else
   puts "    FAILED TEST".colorize(:red)
 end
 
-#card1 = harry.add_recipe_card(pasta, 12, 3)
+puts "## RECIPE <-> RECIPE_INGREDIENT <-> INGREDIENT".colorize(:magenta)
 
-# puts "# CLASS.all (x6)".colorize(:yellow)
-#
-# puts "# CLASS.all (x6)".colorize(:yellow)
+puts "   # Recipe Test".colorize(:yellow)
+if pizza.ingredients == [milk, wheat, tomato_sauce]
+  puts "    recipe.ingredients returns recipe's ingredients".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+puts "   # Recipe Ingredient Test".colorize(:yellow)
+if ri1[0].ingredient == [milk]
+  puts "    recipeingredients.ingredient returns ri ingredient".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+if ri1[0].recipe == [pizza]
+  puts "    recipeingredients.recipe returns ri recipe".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+puts "   # Ingredient Test".colorize(:yellow)
+if Ingredient.most_common_allergen == [tomato_sauce]
+  puts "    Ingredient.most_common_allergen returns  most common allergen".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+
+puts "## USER <-> ALLERGEN <-> INGREDIENT".colorize(:magenta)
+
+puts "  User Test".colorize(:yellow)
+if dick.allergens == [milk, wheat, strawberry]
+  puts "    user.allergens returns  array of users  allergens".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+puts "  Ingredient Test".colorize(:yellow)
+if Ingredient.most_common_allergen == milk
+  puts "    user.allergens returns  array of users  allergens".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
+
+
+puts "## RECIPE <-> RECIPE_INGREDIENT <-> INGREDIENT <-> ALLERGEN".colorize(:magenta)
+
+puts "  Final Boss".colorize(:yellow)
+if pizza.allergens == [milk, wheat, tomato_sauce]
+  puts "    recipe.allergens returns  array of recipes  allergens".colorize(:green)
+else
+  puts "    FAILED TEST".colorize(:red)
+end
 
 binding.pry

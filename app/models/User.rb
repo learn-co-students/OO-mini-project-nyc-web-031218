@@ -53,7 +53,7 @@ class User
     Allergen.new(ingredient, self)
   end
 
-  def find_users_allergens
+  def find_user_allergens
     Allergen.all.select do |allergen|
       allergen.user == self
     end
