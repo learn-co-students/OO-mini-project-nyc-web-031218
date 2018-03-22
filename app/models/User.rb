@@ -38,8 +38,8 @@ class User
     self.find_user_recipe_cards.each do |recipe_card|
       ratings[recipe_card.recipe] = recipe_card.rating
     end
-    # binding.pry
-    ratings.max_by(3) {|k,v| v}
+    top_three = ratings.max_by(3) {|k,v| v}
+    top_three.collect { |h| h[0] }
 
   end
 
