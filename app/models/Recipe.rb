@@ -34,23 +34,48 @@
      ingredients.each do |ingredient|
         add_rc_ingredient(ingredient)
      end
-     binding.pry
    end
 
    def recipe_ingredients
      RecipeIngredient.all.select do |ri|
        ri.recipe == self
+     end
+   end
+
+   def ingredients
+     recipe_ingredients.map do |ri|
        ri.ingredient
      end
-     binding.pry
    end
 
 
+   def allergens
+     allergen_arr = []
+     allergen_ingredients = Allergen.all.map do |allergen|
+       allergen.ingredient
+     end
+     ingredients.each do |ingredient|
+       if allergen_ingredients.include?(ingredient)
+          allergen_arr << ingredient
+        end
+      end
+      allergen_arr
+      binding.pry
+    end
 
+   def recipe_cards
+     Recipecard.all.select do |rc|
+       rc.recipe == self
+     end
+   end
 
-
-
-
+   #return this user's recipes
+   def users
+    x = recipe_cards.map do |rc|
+       rc.user
+     end
+     binding.pry
+   end
 
 
 
